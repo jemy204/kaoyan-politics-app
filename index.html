@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="theme-color" content="#f6f3ec" />
+    <meta
+      name="description"
+      content="研政 POLIS · 2007—2026 考研政治真题刷题系统。专题练习、整卷模考、错题回顾与学情分析。"
+    />
+    <title>研政 POLIS · 考研政治真题</title>
+    <script>
+      // Apply the persisted theme before first paint to avoid a flash.
+      ;(() => {
+        try {
+          const saved = JSON.parse(localStorage.getItem('polis.settings') || 'null')
+          const mode = saved?.theme || 'system'
+          const dark =
+            mode === 'dark' ||
+            (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+          document.documentElement.dataset.font = saved?.fontSize === 'compact' ? 'compact' : 'comfortable'
+          document.documentElement.dataset.motion = saved?.motion === false ? 'off' : 'on'
+        } catch (_) {
+          document.documentElement.dataset.theme = 'light'
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
